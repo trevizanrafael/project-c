@@ -6,7 +6,7 @@ int verifica_data(data *d) {
     
     int dias_no_mes[13] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}; //define o numero de dias maximos pra cada mes
 
-    if ((d->ano % 4 == 0) 
+    if (d->ano % 4 == 0) 
     {
         dias_no_mes[2] = 29;
     } //define fevereiro como 29 caso seja um ano bissexto
