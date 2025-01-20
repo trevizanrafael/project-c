@@ -1,64 +1,20 @@
 int verifica_data(data *d) {
-    if((d->ano)%4==0)
+    if (d->mes < 1 || d->mes > 12) 
     {
-        if(d->mes == 1 || d->mes == 3 || d->mes == 5 || d->mes == 7 || d->mes == 8 || d->mes == 10 || d->mes == 12)
-            {
-                if(d->dia>31 || d->dia<1)
-                {
-                    return 0;
-                } else {
-                        return 1;
-                    }
-            } else if(d->mes == 4 || d->mes == 6 || d->mes == 9 || d->mes == 11)
-                {
-                    if(d->dia>30 || d->dia<1)
-                    {
-                        return 0;
-                    } else {
-                        return 1;
-                    }
-                } else if(d->mes==2)
-                    {
-                        if(d->dia>29 || d->dia<1)
-                        {
-                            return 0;
-                        } else {
-                            return 1;
-                        }   
-                    } else if (d->mes>12||d->mes<1)
-                        {
-                            return 0;
-                        }
-    } 
-    else 
+        return 0;
+    } //ve se o mes ta fora dos 12
+    
+    int dias_no_mes[13] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}; //define o numero de dias maximos pra cada mes
+
+    if ((d->ano % 4 == 0) 
     {
-        if(d->mes == 1 || d->mes == 3 || d->mes == 5 || d->mes == 7 || d->mes == 8 || d->mes == 10 || d->mes == 12)
-            {
-                if(d->dia>31 || d->dia<1)
-                {
-                    return 0;
-                } else {
-                        return 1;
-                    }
-            } else if(d->mes == 4 || d->mes == 6 || d->mes == 9 || d->mes == 11)
-                {
-                    if(d->dia>30 || d->dia<1)
-                    {
-                        return 0;
-                    } else {
-                        return 1;
-                    }
-                } else if(d->mes==2)
-                    {
-                        if(d->dia>28 || d->dia<1)
-                        {
-                            return 0;
-                        } else {
-                            return 1;
-                        }   
-                    } else if (d->mes>12||d->mes<1)
-                        {
-                            return 0;
-                        }
-    }
+        dias_no_mes[2] = 29;
+    } //define fevereiro como 29 caso seja um ano bissexto
+
+    if (d->dia < 1 || d->dia > dias_no_mes[d->mes]) 
+    {
+        return 0;
+    } // caso a data esteja fora dos dias retorna falso
+
+    return 1; // retorna verdadeiro se passar nos testes
 }
