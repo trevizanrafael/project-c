@@ -14,24 +14,28 @@ typedef struct {
 } hora;
 
 int verifica_hora(hora *h) {
-    if (h->hora > 23 || h->hora < 0 || h->min > 59 || h->min < 0) {
+    if (h->hora > 23 || h->hora < 0 || h->min > 59 || h->min < 0) 
+    {
         return 0;
     }
     return 1;
 }
 
 int verifica_data(data *d) {
-    if (d->mes < 1 || d->mes > 12) {
+    if (d->mes < 1 || d->mes > 12) 
+    {
         return 0;
     }
 
     int dias_no_mes[13] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
-    if (d->ano % 4 == 0) {
+    if (d->ano % 4 == 0) 
+    {
         dias_no_mes[2] = 29;
     }
 
-    if (d->dia < 1 || d->dia > dias_no_mes[d->mes]) {
+    if (d->dia < 1 || d->dia > dias_no_mes[d->mes]) 
+    {
         return 0;
     }
 
