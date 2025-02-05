@@ -32,3 +32,10 @@ typedef struct
 	td_disciplina disciplinas[4];
 	char email[100];
 } aluno;
+
+typedef struct {
+    td_aluno aluno;
+    td_hora horario;
+    td_data data;
+    char descricao[300];
+} compromisso;
