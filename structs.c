@@ -98,9 +98,6 @@ void cadastra_compromisso(compromisso compromissos [], int num_compromissos) {
     aluno alunos[num_compromissos];
     cadastra_aluno(&compromissos[0].aluno, num_compromissos);
     printf("Digite a data do compromisso do aluno no formato DD/MM/YYYY: ");
-        while (scanf("%d/%d/%d", &alunos[i].matricula.dia, &alunos[i].matricula.mes, &alunos[i].matricula.ano) != 3 || !verifica_data(&alunos[i].matricula)) {
-            printf("Data inválida! Digite novamente no formato DD/MM/YYYY: ");
-        }
 }
 
 int main() {
