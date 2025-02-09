@@ -66,6 +66,8 @@ void cadastra_aluno (aluno alunos [], int dimensao) {
     int i, j, k;
     for (i = 0; i < dimensao; i++) 
     {
+        printf("Digite o ra do aluno: ");
+        scanf("%d", &alunos[i].ra);
         printf("Digite o nome do aluno: ");
         scanf(" %[^\n]", alunos[i].nome);
         
@@ -125,7 +127,7 @@ int verifica_compromissos_do_dia(compromisso compromissos[], int num_compromisso
     return 0; // sem problemas, pode cadastrar
 }
 
-void cadastra_compromisso(compromisso compromissos[], int *num_compromissos) {
+void cadastra_compromisso(compromisso compromissos[], int *num_compromissos, aluno alunos[], int num_alunos) {
     if (*num_compromissos >= 100) 
         { // supondo um limite de 100 compromissos
             printf("Limite de compromissos atingido!\n");
@@ -133,9 +135,25 @@ void cadastra_compromisso(compromisso compromissos[], int *num_compromissos) {
         }
 
     compromisso novo; //declaracao do array do novo compromisso
+    int ra_existente = 0; // variavel para verificar se o RA existe
     
     printf("Digite o RA do aluno: ");
     scanf("%d", &novo.aluno.ra);
+    
+    for (int i = 0; i < num_alunos; i++) 
+        {
+            if (alunos[i].ra == novo.aluno.ra) 
+                {
+                    novo.aluno = alunos[i]; // Copia os dados do aluno
+                    ra_existente = 1;
+                    break;
+                }
+        }
+    if (!ra_existente) 
+        {
+            printf("Erro: RA não encontrado!\n");
+            return; // Encerra a função sem cadastrar o compromisso
+        }
 
     printf("Digite o nome do aluno: ");
     scanf(" %[^\n]", novo.aluno.nome);
@@ -163,7 +181,25 @@ void cadastra_compromisso(compromisso compromissos[], int *num_compromissos) {
 }
 
 int main(){
-  //FAZER A IMPLEMENTACAO DAS FUNCOES AQUI
-  
+    aluno alunos[1]; // Um único aluno
+    compromisso compromissos[10]; // Lista de compromissos (máx. 10 para teste)
+    int num_compromissos = 0; // Contador de compromissos
+
+    printf("=== Cadastro de Aluno ===\n");
+    cadastra_aluno(alunos, 1);
+
+    printf("\n=== Cadastro de Compromisso ===\n");
+    cadastra_compromisso(compromissos, &num_compromissos, alunos, 1);
+
+    printf("\n=== Dados Cadastrados ===\n");
+    printf("Aluno: %s\n", alunos[0].nome);
+    printf("RA: %d\n", alunos[0].ra);
+    printf("E-mail: %s\n", alunos[0].email);
+    printf("Data de matrícula: %02d/%02d/%04d\n", alunos[0].matricula.dia, alunos[0].matricula.mes, alunos[0].matricula.ano);
+
+    printf("\nCompromisso do aluno %d - %s\n", compromissos[0].aluno.ra, compromissos[0].aluno.nome);
+    printf("Data: %02d/%02d/%04d\n", compromissos[0].data.dia, compromissos[0].data.mes, compromissos[0].data.ano);
+    printf("Horário: %02d:%02d\n", compromissos[0].horario.hora, compromissos[0].horario.min);
+    printf("Descrição: %s\n", compromissos[0].descricao);
   return 0;
 }
