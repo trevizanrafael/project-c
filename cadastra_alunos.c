@@ -49,7 +49,7 @@ void cadastra_aluno (aluno alunos [], int dimensao) {
     for (i = 0; i < dimensao; i++) 
     {
 	printf("Digite o ra do aluno: ");
-        scanf("%d", alunos[i].ra);
+        scanf("%d", &alunos[i].ra);
         printf("Digite o nome do aluno: ");
         scanf(" %[^\n]", alunos[i].nome);
         
