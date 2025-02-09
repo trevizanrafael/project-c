@@ -94,9 +94,58 @@ void cadastra_aluno (aluno alunos [], int dimensao) {
     }
 }
 
-void cadastra_compromisso(compromisso compromissos [], int num_compromissos) {
-    aluno alunos[num_compromissos];
-    cadastra_aluno(alunos, num_compromissos);
+void cadastra_compromisso(compromisso compromissos[], int *num_compromissos, aluno alunos[], int num_alunos) {
+    if (*num_compromissos >= 100) 
+        { // supondo um limite de 100 compromissos
+            printf("Limite de compromissos atingido!\n");
+            return;
+        }
+
+    compromisso novo; //declaracao do array do novo compromisso
+    int ra_existente = 0; // variavel para verificar se o RA existe
+    
+    printf("Digite o RA do aluno: ");
+    scanf("%d", &novo.aluno.ra);
+    
+    for (int i = 0; i < num_alunos; i++) 
+        {
+            if (alunos[i].ra == novo.aluno.ra) 
+                {
+                    novo.aluno = alunos[i]; // Copia os dados do aluno
+                    ra_existente = 1;
+                    break;
+                }
+        }
+    if (!ra_existente) 
+        {
+            printf("Erro: RA não encontrado!\n");
+            return; // Encerra a função sem cadastrar o compromisso
+        }
+
+    printf("Digite o nome do aluno: ");
+    scanf(" %[^\n]", novo.aluno.nome);
+
+    printf("Digite a data do compromisso (DD/MM/YYYY): ");
+    while (scanf("%d/%d/%d", &novo.data.dia, &novo.data.mes, &novo.data.ano) != 3 || !verifica_data(&novo.data)) {
+        printf("Data inválida! Digite novamente no formato DD/MM/YYYY: ");
+    }
+
+    printf("Digite o horário do compromisso (HH:MM): ");
+    scanf("%d:%d", &novo.horario.hora, &novo.horario.min);
+
+    if (verifica_compromissos_do_dia(compromissos, *num_compromissos, novo.aluno.ra, novo.data, novo.horario) == -1) 
+        {
+            return; // Impede o cadastro do compromisso
+        }
+
+    printf("Digite a descrição do compromisso: ");
+    scanf(" %[^\n]", novo.descricao);
+
+    compromissos[*num_compromissos] = novo;
+    (*num_compromissos)++;
+
+    printf("Compromisso cadastrado com sucesso!\n");
+}
     
 }
 
