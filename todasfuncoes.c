@@ -246,7 +246,7 @@ void cadastra_compromisso(compromisso compromissos[], int *num_compromissos, alu
 int main(){
     int i=1;
     disciplina disciplinas[5];
-    compromisso compromissos[1];
+    compromisso compromissos[10];
     aluno alunos[1];
     cadastra_disciplina(disciplinas,5);
     cadastra_aluno(alunos,1,disciplinas);
