@@ -357,7 +357,6 @@ int main(){
         disciplina *disciplinas = alocar_disciplinas(tamanho_disciplinas);
     
     int decisao=0;
-    scanf("%d",&decisao);
     do
     {
     exibir_menu();
@@ -367,9 +366,10 @@ int main(){
         case 7:
             return 0;
         case 1:
-            printf("i");
+            printf("i\n");
+            break;
         default:
-            printf("Número não representa uma ação.");
+            printf("Número não representa uma ação.\n");
     }
     } while(decisao!=7);
     
