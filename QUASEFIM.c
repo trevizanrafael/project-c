@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int dis_cadastradas=0;
+int dis_cadastradas=15;
 
 typedef struct
 {
