@@ -1,3 +1,4 @@
+//adicionar variavel glob
 int verifica_data(data *d) {
     if (d->mes < 1 || d->mes > 12) 
     {
