@@ -3,6 +3,7 @@
 #include <string.h>
 
 int dis_cadastradas=15;
+int numero_alunos=4;
 
 typedef struct
 {
@@ -234,6 +235,7 @@ void cadastra_aluno (aluno **alunos, int *num_alunos, int *tamanho_alunos, disci
         {
             printf("Data inválida! Digite novamente no formato DD/MM/YYYY: ");
         }
+        numero_alunos++;
 }
 
 int verifica_compromissos_do_dia(compromisso compromissos[], int num_compromissos, int ra, data d, hora h) {
@@ -535,17 +537,16 @@ void imprime_todos_compromissos_d(compromisso compromissos[], int num_compromiss
 }
 
 void imprime_dados_aluno(aluno alunos[], int num_alunos, int ra) {
-    for (int i = 0; i < num_alunos; i++) {
+    for (int i = 0; i < numero_alunos; i++) {
         if (alunos[i].ra == ra) {
             printf("Dados do Aluno:\n");
             printf("RA: %d\n", alunos[i].ra);
             printf("Nome: %s\n", alunos[i].nome);
             printf("E-mail: %s\n", alunos[i].email);
             printf("Data de Matrícula: %02d/%02d/%04d\n", alunos[i].matricula.dia, alunos[i].matricula.mes, alunos[i].matricula.ano);
-            
             // Imprime as disciplinas, notas e média
             printf("Disciplinas:\n");
-            for (int j = 0; j < 5; j++) { // Supondo que cada aluno tenha 5 disciplinas
+            for (int j = 0; j < 5; j++) { 
                 printf("  Disciplina: %s (Código: %d)\n", alunos[i].disciplinas[j].disciplina, alunos[i].disciplinas[j].codigo_dis);
                 printf("    Notas: ");
                 for (int k = 0; k < 4; k++) { // Supondo que cada disciplina tenha 4 notas
