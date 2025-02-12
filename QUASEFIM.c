@@ -546,7 +546,12 @@ void imprime_dados_aluno(aluno alunos[], int num_alunos, int ra) {
             printf("Data de Matrícula: %02d/%02d/%04d\n", alunos[i].matricula.dia, alunos[i].matricula.mes, alunos[i].matricula.ano);
             // Imprime as disciplinas, notas e média
             printf("Disciplinas:\n");
-            for (int j = 0; j < 5; j++) { 
+            for (int j = 0; j < dis_cadastradas; j++) 
+            { 
+                if(alunos[i].disciplinas[j].codigo_dis==0)
+                {
+                    break;
+                }
                 printf("  Disciplina: %s (Código: %d)\n", alunos[i].disciplinas[j].disciplina, alunos[i].disciplinas[j].codigo_dis);
                 printf("    Notas: ");
                 for (int k = 0; k < 4; k++) { // Supondo que cada disciplina tenha 4 notas
