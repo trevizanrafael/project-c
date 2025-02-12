@@ -238,8 +238,8 @@ void cadastra_aluno (aluno **alunos, int *num_alunos, int *tamanho_alunos, disci
 }
 
 int verifica_compromissos_do_dia(compromisso compromissos[], int num_compromissos, int ra, data d, hora h) {
-    int count = 0; //inicializa o contador de compromissos
-    for (int i = 0; i < num_compromissos; i++) 
+    int count = 0, i; //inicializa o contador de compromissos
+    for (i = 0; i < num_compromissos; i++) 
     {
         if (compromissos[i].aluno.ra == ra &&
             compromissos[i].data.dia == d.dia &&
@@ -280,8 +280,8 @@ void cadastra_compromisso(compromisso **compromissos, int *num_compromissos, int
     do {
         printf("Digite o RA do aluno: ");
         scanf("%d", &novo.aluno.ra);
-        
-        for (int i = 0; i < numero_alunos; i++) 
+        int i;
+        for (i = 0; i < numero_alunos; i++) 
             {
                 if (alunos[i].ra == novo.aluno.ra) 
                     {
@@ -369,7 +369,7 @@ void imprime_compromissos_aluno(compromisso compromissos[], int num_compromissos
     qsort(compromissos_aluno, count, sizeof(compromisso), compara_compromissos);
 
     printf("Compromissos do aluno (RA: %d):\n", ra);
-    for (int i = 0; i < count; i++) 
+    for (i = 0; i < count; i++) 
     {
         printf("Data: %02d/%02d/%04d - Horário: %02d:%02d - Descrição: %s\n",
                compromissos_aluno[i].data.dia,
@@ -418,9 +418,9 @@ int compara_compromissos_geral(const void *a, const void *b) {
 void imprime_todos_compromissos(compromisso compromissos[], int num_compromissos) {
     // Ordena os compromissos usando qsort
     qsort(compromissos, num_compromissos, sizeof(compromisso), compara_compromissos_geral);
-
+    int i;
     printf("Compromissos de todos os alunos (ordenados por RA, Data e Hora):\n");
-    for (int i = 0; i < num_compromissos; i++) 
+    for (i = 0; i < num_compromissos; i++) 
     {
         printf("RA: %d - Data: %02d/%02d/%04d - Horário: %02d:%02d - Descrição: %s\n",
                compromissos[i].aluno.ra,
@@ -455,9 +455,9 @@ int compara_compromissos_por_hora_e_ra(const void *a, const void *b) {
 void imprime_compromissos_por_data(compromisso compromissos[], int num_compromissos, data d) {
     compromisso *compromissos_data = malloc(num_compromissos * sizeof(compromisso));
     int count = 0;
-
+    int i;
     // Filtra os compromissos pela data
-    for (int i = 0; i < num_compromissos; i++) 
+    for (i = 0; i < num_compromissos; i++) 
     {
         if (compromissos[i].data.dia == d.dia &&
             compromissos[i].data.mes == d.mes &&
@@ -471,7 +471,7 @@ void imprime_compromissos_por_data(compromisso compromissos[], int num_compromis
 
     // Imprime os compromissos
     printf("Compromissos na data %02d/%02d/%04d (ordenados por Hora e RA):\n", d.dia, d.mes, d.ano);
-    for (int i = 0; i < count; i++) 
+    for (i = 0; i < count; i++) 
     {
         printf("RA: %d - Horário: %02d:%02d - Descrição: %s\n",
                compromissos_data[i].aluno.ra,
@@ -519,10 +519,10 @@ int compara_compromissos_d(const void *a, const void *b) {
 void imprime_todos_compromissos_d(compromisso compromissos[], int num_compromissos) {
     // Ordena os compromissos usando qsort
     qsort(compromissos, num_compromissos, sizeof(compromisso), compara_compromissos);
-
+    int i;
     // Imprime os compromissos
     printf("Compromissos (ordenados por Data, Hora e RA):\n");
-    for (int i = 0; i < num_compromissos; i++) 
+    for (i = 0; i < num_compromissos; i++) 
     {
         printf("Data: %02d/%02d/%04d - RA: %d - Horário: %02d:%02d - Descrição: %s\n",
                compromissos[i].data.dia,
@@ -536,7 +536,8 @@ void imprime_todos_compromissos_d(compromisso compromissos[], int num_compromiss
 }
 
 void imprime_dados_aluno(aluno alunos[], int num_alunos, int ra) {
-    for (int i = 0; i < numero_alunos; i++) {
+    int i;
+    for (i = 0; i < numero_alunos; i++) {
         if (alunos[i].ra == ra) {
             printf("Dados do Aluno:\n");
             printf("RA: %d\n", alunos[i].ra);
@@ -545,7 +546,8 @@ void imprime_dados_aluno(aluno alunos[], int num_alunos, int ra) {
             printf("Data de Matrícula: %02d/%02d/%04d\n", alunos[i].matricula.dia, alunos[i].matricula.mes, alunos[i].matricula.ano);
             // Imprime as disciplinas, notas e média
             printf("Disciplinas:\n");
-            for (int j = 0; j < dis_cadastradas; j++) 
+            int j;
+            for (j = 0; j < dis_cadastradas; j++) 
             { 
                 if(alunos[i].disciplinas[j].codigo_dis==0)
                 {
@@ -554,7 +556,8 @@ void imprime_dados_aluno(aluno alunos[], int num_alunos, int ra) {
                 printf("  Disciplina: %s (Código: %d)\n", alunos[i].disciplinas[j].disciplina, alunos[i].disciplinas[j].codigo_dis);
                 printf("    Notas: ");
                 float soma=0;
-                for (int k = 0; k < 4; k++) 
+                int k;
+                for (k = 0; k < 4; k++) 
                 { 
                     printf("%.2f ", alunos[i].disciplinas[j].notas[k]);
                     soma+=alunos[i].disciplinas[j].notas[k];
@@ -579,7 +582,8 @@ void imprime_dados_todos_alunos(aluno alunos[], int num_alunos) {
 
     // Imprime os dados dos alunos
     printf("Dados de Todos os Alunos (ordenados por RA):\n");
-    for (int i = 0; i < num_alunos; i++) {
+    int i;
+    for (i = 0; i < num_alunos; i++) {
         printf("RA: %d\n", alunos[i].ra);
         printf("Nome: %s\n", alunos[i].nome);
         printf("E-mail: %s\n", alunos[i].email);
@@ -587,7 +591,8 @@ void imprime_dados_todos_alunos(aluno alunos[], int num_alunos) {
         
         // Imprime as disciplinas, notas e média
         printf("Disciplinas:\n");
-        for (int j = 0; j < dis_cadastradas; j++) 
+        int j;
+        for (j = 0; j < dis_cadastradas; j++) 
         {
         if(alunos[i].disciplinas[j].codigo_dis==0)
             {
@@ -596,7 +601,8 @@ void imprime_dados_todos_alunos(aluno alunos[], int num_alunos) {
             printf("  Disciplina: %s (Código: %d)\n", alunos[i].disciplinas[j].disciplina, alunos[i].disciplinas[j].codigo_dis);
             printf("    Notas: ");
             float soma1=0;
-            for (int k = 0; k < 4; k++) 
+            int k;
+            for (k = 0; k < 4; k++) 
             { 
                 printf("%.2f ", alunos[i].disciplinas[j].notas[k]);
                 soma1=soma1+alunos[i].disciplinas[j].notas[k];
@@ -698,6 +704,10 @@ int main(){
         disciplinas[num_disciplinas++] = (disciplina){115, "Economia"};
     
     int decisao=0;
+    char sub_escolha;
+    int RAa;
+    data datac;
+    int ra5;
     do
     {
     exibir_menu();
@@ -714,7 +724,6 @@ int main(){
                 cadastra_compromisso(&compromissos, &num_compromissos, &tamanho_compromissos, alunos, num_alunos);
             break;
         case 4:
-            char sub_escolha;
                 do 
                 {
                     exibir_submenu_compromissos();
@@ -722,7 +731,6 @@ int main(){
         
                     switch (sub_escolha) {
                         case 'a':
-                            int RAa;
                             printf("Escolha o RA a ser consultado: ");
                             scanf(" %d", &RAa);
                             printf("\nImprimindo compromissos de um aluno...\n");
@@ -733,7 +741,6 @@ int main(){
                             imprime_todos_compromissos(compromissos, num_compromissos);
                             break;
                         case 'c':
-                            data datac;
                             printf("Escolha a data a ser consultada: ");
                             while((scanf("%d/%d/%d",&datac.dia, &datac.mes, &datac.ano))!=3 || !verifica_data(&datac))
                             {
@@ -755,7 +762,6 @@ int main(){
                 } while (sub_escolha != 'e');
                 break;
         case 5:
-            int ra5;
             printf("Escolha o RA para extrair os dados: ");
             scanf("%d", &ra5);
             printf("\nImprimindo dados de um aluno...\n");
