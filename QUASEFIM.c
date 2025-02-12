@@ -282,7 +282,7 @@ void cadastra_compromisso(compromisso **compromissos, int *num_compromissos, int
         printf("Digite o RA do aluno: ");
         scanf("%d", &novo.aluno.ra);
         
-        for (int i = 0; i < num_alunos; i++) 
+        for (int i = 0; i < numero_alunos; i++) 
             {
                 if (alunos[i].ra == novo.aluno.ra) 
                     {
@@ -315,7 +315,7 @@ void cadastra_compromisso(compromisso **compromissos, int *num_compromissos, int
     //verificação se há compromisso no dia
     if (verifica_compromissos_do_dia(*compromissos, *num_compromissos, novo.aluno.ra, novo.data, novo.horario) == -1)
         {
-            printf("Impossível cadastrar nesse dia e nessa data.");
+            printf("Impossível cadastrar nesse horário do dia.\n");
             return; //impede o cadastro do compromisso
         }
         
