@@ -762,7 +762,8 @@ int main(){
             break;
     }
     } while(decisao!=7);
-    
+
+	
     free(alunos);
     free(compromissos);
     free(disciplinas);
